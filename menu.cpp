@@ -75,17 +75,108 @@ void negoziofabbro() {
     cin >> scelta;
     cout << endl;
 
-    switch (scelta) {
-        case 1: cout << "Hai comprato: Gladio!"              << endl; break;
-        case 2: cout << "Hai comprato: Spatha!"              << endl; break;
-        case 3: cout << "Hai comprato: Pugio!"               << endl; break;
-        case 4: cout << "Hai comprato: Lancia Frammentata!"  << endl; break;
-        case 5: cout << "Hai comprato: Ascia Spacca Scudi!"  << endl; break;
-        case 6: cout << "Hai comprato: Ascia Spacca Cranio!" << endl; break;
-        case 7: cout << "Hai comprato: Spada del Generale!"  << endl; break;
-        case 8: cout << "Hai comprato: Spada dell'Imperatore!" << endl; break;
-        default: cout << "Scelta non valida!" << endl;
+switch (scelta) {
+        case 1:
+            if (armi.gladio) {
+                cout << "Hai già questo oggetto!" << endl;
+            } else if (sacca.monete >= 50) {
+                sacca.monete -= 50;
+                armi.gladio = true;
+                cout << "Hai comprato: Gladio!" << endl;
+            } else {
+                cout << "Monete insufficienti!" << endl;
+            }
+            break;
+
+        case 2:
+            if (armi.spatha) {
+                cout << "Hai già questo oggetto!" << endl;
+            } else if (sacca.monete >= 100) {
+                sacca.monete -= 100;
+                armi.spatha = true;
+                cout << "Hai comprato: Spatha!" << endl;
+            } else {
+                cout << "Monete insufficienti!" << endl;
+            }
+            break;
+
+        case 3:
+            if (armi.pugio) {
+                cout << "Hai già questo oggetto!" << endl;
+            } else if (sacca.monete >= 150) {
+                sacca.monete -= 150;
+                armi.pugio = true;
+                cout << "Hai comprato: Pugio!" << endl;
+            } else {
+                cout << "Monete insufficienti!" << endl;
+            }
+            break;
+
+        case 4:
+            if (armi.lancia) {
+                cout << "Hai già questo oggetto!" << endl;
+            } else if (sacca.monete >= 200) {
+                sacca.monete -= 200;
+                armi.lancia = true;
+                cout << "Hai comprato: Lancia Frammentata!" << endl;
+            } else {
+                cout << "Monete insufficienti!" << endl;
+            }
+            break;
+
+        case 5:
+            if (armi.asciascudi) {
+                cout << "Hai già questo oggetto!" << endl;
+            } else if (sacca.monete >= 250) {
+                sacca.monete -= 250;
+                armi.asciascudi = true;
+                cout << "Hai comprato: Ascia Spacca Scudi!" << endl;
+            } else {
+                cout << "Monete insufficienti!" << endl;
+            }
+            break;
+
+        case 6:
+            if (armi.asciacranio) {
+                cout << "Hai già questo oggetto!" << endl;
+            } else if (sacca.monete >= 300) {
+                sacca.monete -= 300;
+                armi.asciacranio = true;
+                cout << "Hai comprato: Ascia Spacca Cranio!" << endl;
+            } else {
+                cout << "Monete insufficienti!" << endl;
+            }
+            break;
+
+        case 7:
+            if (armi.spadagenerale) {
+                cout << "Hai già questo oggetto!" << endl;
+            } else if (sacca.monete >= 350) {
+                sacca.monete -= 350;
+                armi.spadagenerale = true;
+                cout << "Hai comprato: Spada del Generale!" << endl;
+            } else {
+                cout << "Monete insufficienti!" << endl;
+            }
+            break;
+
+        case 8:
+            if (armi.spadaimperatore) {
+                cout << "Hai già questo oggetto!" << endl;
+            } else if (sacca.monete >= 400) {
+                sacca.monete -= 400;
+                armi.spadaimperatore = true;
+                cout << "Hai comprato: Spada dell'Imperatore!" << endl;
+            } else {
+                cout << "Monete insufficienti!" << endl;
+            }
+            break;
+
+        default:
+            cout << "Scelta non valida!" << endl;
     }
+
+    cout << "Monete rimaste: " << sacca.monete << endl;
 }
 
 // ─────────────────────────────────────────

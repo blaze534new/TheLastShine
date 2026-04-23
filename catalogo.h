@@ -19,8 +19,8 @@ struct Spell {
     int    cura;
 };
 
-struct Inventario {
-    int monete;
+struct inventario {
+    int monete = 0;
     int frammenti_ferro;
     int lingotto_ferro;
     int acciaio;
@@ -29,6 +29,20 @@ struct Inventario {
     int titanio;
     int legno;
 };
+inline inventario sacca;
+
+struct armamentario {
+    bool gladio = false;
+    bool spatha = false;
+    bool pugio = false;
+    bool lancia = false;
+    bool spadagenerale = false;
+    bool asciascudi = false;
+    bool asciacranio = false;
+    bool spadaimperatore = false;
+};
+
+inline armamentario armi;
 // ─────────────────────────────────────────
 //  CATALOGHI
 //  inline: evita definizione multipla
