@@ -29,7 +29,6 @@ struct Inventario {
     int titanio;
     int legno;
 };
-
 // ─────────────────────────────────────────
 //  CATALOGHI
 //  inline: evita definizione multipla

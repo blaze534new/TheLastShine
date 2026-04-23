@@ -1,6 +1,5 @@
 #include "combat.h"
 #include <iostream>
-
 #include "menu.h"
 using namespace std;
 
@@ -22,7 +21,6 @@ void stampaStato(const Entity& g, const Entity& n) {
 // ─────────────────────────────────────────
 
 int attaccaFisico(Entity& attaccante, Entity& bersaglio) {
-    // Tiro per colpire: d20 + bonus attacco.
     int  tiro    = tiraDado(20);
     bool critico = (tiro == 20);
     int  totale  = tiro + attaccante.bonusAtk();
@@ -32,7 +30,6 @@ int attaccaFisico(Entity& attaccante, Entity& bersaglio) {
     cout << " | totale=" << totale << " vs CA=" << bersaglio.CA() << "]\n";
 
     if (critico || totale >= bersaglio.CA()) {
-        // Se colpisce, tira il dado arma (+ FOR). Sul critico aggiunge un dado extra.
         int dado  = getDadoArma(attaccante.idArma);
         int danno = tiraDado(dado) + attaccante.mod(attaccante.FOR);
         if (critico) danno += tiraDado(dado);
@@ -68,7 +65,6 @@ void usaIncantesimo(Entity& giocatore, Entity& nemico) {
     cin >> scelta;
     if (scelta < 1 || scelta > 3) { cout << "Scelta non valida.\n"; return; }
 
-    // Applica l'effetto della magia selezionata.
     Spell& s = spellBook[scelta - 1];
     giocatore.numSpell--;
 
@@ -156,7 +152,7 @@ void combatManager(Entity& giocatore, Entity& nemico) {
          << " VS " << nemico.name << " (" << nemico.classe << ")\n";
 
     while (giocatore.isVivo() && nemico.isVivo()) {
-        // Ciclo principale: stato -> turno giocatore -> turno nemico.
+
         stampaStato(giocatore, nemico);
 
         cout << "\nAzione:\n";
@@ -192,13 +188,6 @@ void combatManager(Entity& giocatore, Entity& nemico) {
         cout << "*** " << nemico.name << " ha vinto. Hai perso! ***\n";
     cout << "========================================\n";
 }
-
-
-
-
-// ─────────────────────────────────────────
-//  COMBAT MANAGER TUTORIALATO
-// ─────────────────────────────────────────
 
 void combatManagerTutorial(Entity& giocatore, Entity& nemico) {
     cout << "\n*** INIZIA IL TUO PRIMO COMBATTIMENTO ***\n";

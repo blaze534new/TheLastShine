@@ -27,12 +27,17 @@ public:
     int    numSpell;
     bool   haUsatoCura;
 
-    Entity(string n, string cl, int h, int f, int d, int arma, int l, int sp)
+    // ── posizione sulla mappa ─────────────
+    int    player_loc_x;
+    int    player_loc_y;
+
+    Entity(string n, string cl, int h, int f, int d, int arma, int l, int sp,
+           int startX = 1, int startY = 1)
         : name(n), classe(cl), hp(h), hpMax(h),
           FOR(f), DES(d), idArma(arma), liv(l),
-          numSpell(sp), haUsatoCura(false) {}
+          numSpell(sp), haUsatoCura(false),
+          player_loc_x(startX), player_loc_y(startY) {}
 
-    // Metodi utility base per calcoli di combattimento.
     int  mod(int stat)         { return (stat - 10) / 2; }
     int  CA()                  { return 10 + mod(DES); }
     int  bonusAtk()            { return mod(FOR) + (liv / 4 + 2); }

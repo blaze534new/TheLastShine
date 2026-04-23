@@ -1,29 +1,62 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <windows.h>
-#include "palette.h"
-#include "entity.h"
-#include "menu.h"
+#include<iostream>
+#include<string>
 using namespace std;
 
-int main() {
-    // Inizializza il generatore casuale per dadi, eventi e combattimento.
-    srand(time(NULL));
+struct armi{
+    string nome;
+    int dado;
+    string tipo;
+};
+// yo
 
-    // Abilita i colori ANSI su Windows (necessari per la palette nel terminale).
-    SetConsoleOutputCP(CP_UTF8);
-    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-    DWORD dwMode = 0;
-    GetConsoleMode(hOut, &dwMode);
-    SetConsoleMode(hOut, dwMode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+class player {
+private:
+    int HP, FOR, DES, VIG, INT, SAG;
+public:
+    player(int h, int f, int d, int v, int i, int s);
+    ~player();
 
-    // Crea il personaggio principale con statistiche iniziali.
-    // Parametri: nome, classe, hp, FOR, DES, idArma, livello, numeroSpell.
-    Entity giocatore("Eroe", "Guerriero", 40, 16, 12, 1, 4, 0);
 
-    // Avvia il menu iniziale (porta d'ingresso di tutto il gioco).
-    menuiniziale();
+};
 
-    return 0;
+player::player(int h, int f, int d, int v, int i, int s){
+    HP = h;
+    FOR = f;
+    DES = d;
+    VIG = v;
+    INT = i;
+    SAG = s;
+}
+
+player::~player(){}
+
+class enemy {
+private:
+    int HP, FOR, DES, VIG;
+public:
+    enemy(int h, int f, int d, int v);
+    ~enemy();
+
+
+};
+
+enemy::enemy(int h, int f, int d, int v){
+    HP = h;
+    FOR = f;
+    DES = d;
+    VIG = v;
+}
+
+enemy::~enemy(){}
+
+
+void combattimenti(player p, enemy e, armi a, armi b){
+
+}
+
+int main(){
+    armi gladio = {"Gladio", 6, "leggero"};
+    armi lancia = {"Lancia", 8, "pesante"};
+    armi ascia = {"Ascia", 12, "pesante"};
+    armi spada_lunga = {"Spada", 10, "due mani"};
 }
