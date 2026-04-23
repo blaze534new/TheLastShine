@@ -2,7 +2,7 @@
 #include "entity.h"
 
 // ─────────────────────────────────────────
-//  DICHIARAZIONI  FUNZIONI DI COMBATTIMENTO
+//  DICHIARAZIONI FUNZIONI DI COMBATTIMENTO
 // ─────────────────────────────────────────
 
 void stampaStato    (const Entity& giocatore, const Entity& nemico);
