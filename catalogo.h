@@ -21,7 +21,13 @@ struct Spell {
 
 struct Inventario {
     int monete;
-    int Frammenti_Ferro;
+    int frammenti_ferro;
+    int lingotto_ferro;
+    int acciaio;
+    int rutilo;
+    int ilmenite;
+    int titanio;
+    int legno;
 };
 
 // ─────────────────────────────────────────

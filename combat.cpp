@@ -1,5 +1,7 @@
 #include "combat.h"
 #include <iostream>
+
+#include "menu.h"
 using namespace std;
 
 // ─────────────────────────────────────────
@@ -153,6 +155,62 @@ void combatManager(Entity& giocatore, Entity& nemico) {
     cout << giocatore.name << " (" << giocatore.classe << ")"
          << " VS " << nemico.name << " (" << nemico.classe << ")\n";
 
+    while (giocatore.isVivo() && nemico.isVivo()) {
+        // Ciclo principale: stato -> turno giocatore -> turno nemico.
+        stampaStato(giocatore, nemico);
+
+        cout << "\nAzione:\n";
+        cout << "1. Attacca\n";
+        if (giocatore.classe == "Mago")
+            cout << "2. Usa Incantesimo (" << giocatore.numSpell << " rimasti)\n";
+        else
+            cout << "2. Usa Incantesimo [non disponibile per " << giocatore.classe << "]\n";
+        cout << "3. Difenditi\n> ";
+
+        int scelta;
+        cin >> scelta;
+        int bonusCA = 0;
+
+        switch (scelta) {
+            case 1: attaccaFisico(giocatore, nemico); break;
+            case 2:
+                if (giocatore.classe == "Mago") usaIncantesimo(giocatore, nemico);
+                else cout << "I " << giocatore.classe << " non usano magie!\n";
+                break;
+            case 3: bonusCA = difenditi(giocatore); break;
+            default: cout << "Scelta non valida!\n"; break;
+        }
+
+        if (!nemico.isVivo()) break;
+        turnoNemico(nemico, giocatore, bonusCA);
+    }
+
+    cout << "\n========================================\n";
+    if (giocatore.isVivo())
+        cout << "*** " << giocatore.name << " ha vinto! ***\n";
+    else
+        cout << "*** " << nemico.name << " ha vinto. Hai perso! ***\n";
+    cout << "========================================\n";
+}
+
+
+
+
+// ─────────────────────────────────────────
+//  COMBAT MANAGER TUTORIALATO
+// ─────────────────────────────────────────
+
+void combatManagerTutorial(Entity& giocatore, Entity& nemico) {
+    cout << "\n*** INIZIA IL TUO PRIMO COMBATTIMENTO ***\n";
+    cout << giocatore.name << " (" << giocatore.classe << ")"
+         << " VS " << nemico.name << " (" << nemico.classe << ")\n";
+    testo("Benvenuto nell'arena e nel tuo primo combattimento", 1);
+    testo("Il combattimento è a turno avrai un turno per attaccare ma anche il nemico avrà un turno per attaccarti", 2);
+    testo("Sfrutta una tua strategia per battere i nemici alternando difesa e attacco", 2);
+    testo("Le azioni principali che puoi fare sono:", 1);
+    testo("1) Attacco lancerai un D20(Dado a 20 facce) e il risultato del dado determinerà quanti danni farai  ", 1);
+    testo("oltre ai danni dati dal risultato del dado puoi avere dei bonus attacco in base alla classe e/o ai bonus che sbloccherai nel gioco ", 1);
+    testo("2) Usa incantesimo  ", 1);  // TODO: FINIRE IL TUTORIAL
     while (giocatore.isVivo() && nemico.isVivo()) {
         // Ciclo principale: stato -> turno giocatore -> turno nemico.
         stampaStato(giocatore, nemico);

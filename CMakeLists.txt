@@ -9,4 +9,11 @@ add_executable(TheLastShinee
         main.cpp
         menu.cpp
         combat.cpp
+        mappa.cpp
+        mappa.h
+        menu.h
+        palette.h
+        entity.h
+        combat.h
+        catalogo.h
 )
