@@ -2,6 +2,7 @@
 #include "palette.h"
 #include "mappa.h"
 #include "combat.h"
+#include "entity.h"
 #include <iostream>
 #include <iomanip>
 #include <thread>
@@ -56,7 +57,7 @@ void storiainizio() {
 //  NEGOZIO FABBRO
 // ─────────────────────────────────────────
 
-void negoziofabbro() {
+void negoziofabbro(Entity& giocatore) {
     int scelta;
 
     cout << "==============================" << endl;
@@ -79,8 +80,8 @@ switch (scelta) {
         case 1:
             if (armi.gladio) {
                 cout << "Hai già questo oggetto!" << endl;
-            } else if (sacca.monete >= 50) {
-                sacca.monete -= 50;
+            } else if (giocatore.inv.monete >= 50) {
+                giocatore.inv.monete -= 50;
                 armi.gladio = true;
                 cout << "Hai comprato: Gladio!" << endl;
             } else {
@@ -91,8 +92,8 @@ switch (scelta) {
         case 2:
             if (armi.spatha) {
                 cout << "Hai già questo oggetto!" << endl;
-            } else if (sacca.monete >= 100) {
-                sacca.monete -= 100;
+            } else if (giocatore.inv.monete >= 100) {
+                giocatore.inv.monete -= 100;
                 armi.spatha = true;
                 cout << "Hai comprato: Spatha!" << endl;
             } else {
@@ -103,8 +104,8 @@ switch (scelta) {
         case 3:
             if (armi.pugio) {
                 cout << "Hai già questo oggetto!" << endl;
-            } else if (sacca.monete >= 150) {
-                sacca.monete -= 150;
+            } else if (giocatore.inv.monete >= 150) {
+                giocatore.inv.monete -= 150;
                 armi.pugio = true;
                 cout << "Hai comprato: Pugio!" << endl;
             } else {
@@ -115,8 +116,8 @@ switch (scelta) {
         case 4:
             if (armi.lancia) {
                 cout << "Hai già questo oggetto!" << endl;
-            } else if (sacca.monete >= 200) {
-                sacca.monete -= 200;
+            } else if (giocatore.inv.monete >= 200) {
+                giocatore.inv.monete -= 200;
                 armi.lancia = true;
                 cout << "Hai comprato: Lancia Frammentata!" << endl;
             } else {
@@ -127,8 +128,8 @@ switch (scelta) {
         case 5:
             if (armi.asciascudi) {
                 cout << "Hai già questo oggetto!" << endl;
-            } else if (sacca.monete >= 250) {
-                sacca.monete -= 250;
+            } else if (giocatore.inv.monete >= 250) {
+                giocatore.inv.monete -= 250;
                 armi.asciascudi = true;
                 cout << "Hai comprato: Ascia Spacca Scudi!" << endl;
             } else {
@@ -139,8 +140,8 @@ switch (scelta) {
         case 6:
             if (armi.asciacranio) {
                 cout << "Hai già questo oggetto!" << endl;
-            } else if (sacca.monete >= 300) {
-                sacca.monete -= 300;
+            } else if (giocatore.inv.monete >= 300) {
+                giocatore.inv.monete -= 300;
                 armi.asciacranio = true;
                 cout << "Hai comprato: Ascia Spacca Cranio!" << endl;
             } else {
@@ -151,8 +152,8 @@ switch (scelta) {
         case 7:
             if (armi.spadagenerale) {
                 cout << "Hai già questo oggetto!" << endl;
-            } else if (sacca.monete >= 350) {
-                sacca.monete -= 350;
+            } else if (giocatore.inv.monete >= 350) {
+                giocatore.inv.monete -= 350;
                 armi.spadagenerale = true;
                 cout << "Hai comprato: Spada del Generale!" << endl;
             } else {
@@ -163,8 +164,8 @@ switch (scelta) {
         case 8:
             if (armi.spadaimperatore) {
                 cout << "Hai già questo oggetto!" << endl;
-            } else if (sacca.monete >= 400) {
-                sacca.monete -= 400;
+            } else if (giocatore.inv.monete >= 400) {
+                giocatore.inv.monete -= 400;
                 armi.spadaimperatore = true;
                 cout << "Hai comprato: Spada dell'Imperatore!" << endl;
             } else {
@@ -176,7 +177,7 @@ switch (scelta) {
             cout << "Scelta non valida!" << endl;
     }
 
-    cout << "Monete rimaste: " << sacca.monete << endl;
+    cout << "Monete rimaste: " << giocatore.inv.monete << endl;
 }
 
 // ─────────────────────────────────────────

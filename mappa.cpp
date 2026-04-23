@@ -14,7 +14,7 @@ void inizializzaMappa(int indice) {
         for (int j = 0; j < MAP_COLS; j++) {
 
             collisionMap[i][j] = (dm.tilemap[i][j] == 0);
-            mappa[i][j] = (dm.tilemap[i][j] == 1) ? MURO : PAVIMENTO;
+            mappa[i][j] = (dm.tilemap[i][j] == 1) ? MURO : PAVIMENTO; // Scorciatoia per else-if (Operatore ternario), Boh mi garbava usarlo
 
             // oggetti
             if (dm.oggettiLayer[i][j] == 1) mappa[i][j] = OBJ_MONETA;
@@ -70,7 +70,7 @@ void interagisciNPC(Entity& Player) {
     for (int n = 0; n < dm.numNpc; n++) {
         NPC& npc = dm.npcs[n];
         if (npc.x == x && npc.y == y) {
-            // Trovato un NPC!
+            // Trovato un NPC
             if (npc.tipo == 1) {
                 // MENÙ FABBRO
                 bool inMenu = true;
@@ -78,7 +78,7 @@ void interagisciNPC(Entity& Player) {
                     system("CLS");
                     cout << p.bold << p.gold << "=== NEGOZIO DEL " << npc.nome << " ===" << p.reset << "\n\n";
 
-                    cout << "Scegli un'arma da acquistare:\n\n";
+                    cout << "Scegli un'oggetto da acquistare:\n\n";
                     for (int a = 0; a < 3; a++) {
                         cout << (a + 1) << ". " << catalogo[a].nome 
                              << " (d" << catalogo[a].dado << ") - 50 Monete\n";
@@ -120,6 +120,24 @@ void interagisciNPC(Entity& Player) {
 
     // Nessun NPC trovato
     cout << "\nNessun NPC qui.\n";
+}
+
+// ─────────────────────────────────────────
+//  Inventario
+// ─────────────────────────────────────────
+
+void menuInventario(Entity& Player) {
+    bool inMenu = true;
+    while (inMenu) {
+        system("CLS");
+        cout << "====Inventario====" << endl;
+        cout << "Monete: " << Player.inv.monete << endl;
+        cout << "Arma attuale: " << Player.idArma << endl;
+        cout << "Premi un tasto per tornare...\n";
+        _getch();
+        break;
+    }
+
 }
 
 // ─────────────────────────────────────────
@@ -203,7 +221,7 @@ void gameLoop(Entity& Player) {
         system("CLS");
         stampaMappa(Player);
 
-        cout << "\n[W/A/S/D] Muoviti   [E] Raccogli/Interagisci   [Q] Esci\n";
+        cout << "\n[W/A/S/D] Muoviti   [E] Raccogli/Interagisci [I] Inventario   [Q] Esci\n";
         cout << "Mappa: " << mappaAttiva << "  Pos: (" << Player.player_loc_x << ", " << Player.player_loc_y << ")\n";
         if (!messaggio.empty()) { cout << messaggio << "\n"; messaggio = ""; }
 
@@ -232,6 +250,7 @@ void gameLoop(Entity& Player) {
                         messaggio = "\u2609 Hai raccolto una Moneta!";
                         dm.oggettiLayer[x][y] = 0;
                         mappa[x][y] = PAVIMENTO;
+                        Player.inv.monete++;
                         break;
                     case 2:
                         messaggio = "\u2694 Hai raccolto un'Arma!";
@@ -244,7 +263,11 @@ void gameLoop(Entity& Player) {
                 }
             }
         } else {
-            muoviPlayer(Player, input);
+            muoviPlayer(Player,input);
+        }
+
+        if (input == 'i' || input == 'I') {
+            menuInventario(Player);
         }
     }
 }

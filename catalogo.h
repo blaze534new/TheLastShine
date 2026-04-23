@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "entity.h"
 using namespace std;
 
 // ─────────────────────────────────────────
@@ -19,17 +20,6 @@ struct Spell {
     int    cura;
 };
 
-struct inventario {
-    int monete = 0;
-    int frammenti_ferro;
-    int lingotto_ferro;
-    int acciaio;
-    int rutilo;
-    int ilmenite;
-    int titanio;
-    int legno;
-};
-inline inventario sacca;
 
 struct armamentario {
     bool gladio = false;
@@ -47,8 +37,6 @@ inline armamentario armi;
 //  CATALOGHI
 //  inline: evita definizione multipla
 // ─────────────────────────────────────────
-
-inline char cube = 219;
 
 inline Arma catalogo[3] = {
     {1, "Gladio", 6},
