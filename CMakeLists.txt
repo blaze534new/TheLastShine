@@ -1,18 +1,19 @@
-cmake_minimum_required(VERSION 4.2)
-project(Progetto_info)
+cmake_minimum_required(VERSION 3.20)
+project(TheLastShinee)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-include_directories(.)
-
-add_executable(Progetto_info
-        catalogo.h
-        combat.cpp
-        combat.h
-        entity.h
+add_executable(TheLastShinee
         main.cpp
+        menu.cpp
+        combat.cpp
         mappa.cpp
         mappa.h
-        menu.cpp
         menu.h
-        palette.h)
+        palette.h
+        entity.h
+        combat.h
+        catalogo.h
+)
