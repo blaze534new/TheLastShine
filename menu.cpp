@@ -75,7 +75,7 @@ void negoziofabbro(Entity& giocatore) {
     cout << "Scegli un'arma da comprare: ";
     cin >> scelta;
     cout << endl;
-
+// DEH
 switch (scelta) {
         case 1:
             if (armi.gladio) {
