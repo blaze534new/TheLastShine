@@ -3,6 +3,7 @@
 #include <ctime>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <string>
 #include <thread>
 #include <windows.h>
@@ -200,10 +201,10 @@ void testo(const char* t, int secondi) {
     cout.flush();
     if (secondi < 0) secondi = 0;
     this_thread::sleep_for(chrono::seconds(secondi));
-    system("cls");
 }
 
 void storiainizio() {
+    system("cls");
     testo("THE LAST SHINE", 3);
     testo("Firenze, 1480.", 3);
     testo("Una citta costruita sopra la memoria.", 3);
@@ -230,6 +231,10 @@ void storiainizio() {
     testo("Nell'Arena delle Ombre.", 3);
     testo("E ogni combattimento...", 2);
     testo("lo sta riportando indietro.", 3);
+    cout << "\nPremi INVIO per continuare...";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
+    system("cls");
 }
 
 void negoziofabbro(Entity& giocatore) {
