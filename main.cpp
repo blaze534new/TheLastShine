@@ -195,7 +195,10 @@ void combatManager(Entity& giocatore, Entity& nemico);
 void combatManagerTutorial(Entity& giocatore, Entity& nemico);
 
 void testo(const char* t, int secondi) {
+    if (t == nullptr) return;
     cout << t << endl;
+    cout.flush();
+    if (secondi < 0) secondi = 0;
     this_thread::sleep_for(chrono::seconds(secondi));
     system("cls");
 }
@@ -626,6 +629,7 @@ void gameLoop(Entity& giocatore) {
 
 void gioca() {
     Entity giocatore("Eroe", "Guerriero", 40, 16, 12, 1, 4, 0);
+    storiainizio();
     gameLoop(giocatore);
 }
 
