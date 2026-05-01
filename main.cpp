@@ -208,7 +208,7 @@ void storiainizio() {
     testo("THE LAST SHINE", 3);
     testo("Firenze, 1480.", 3);
     testo("Una citta costruita sopra la memoria.", 3);
-    testo("E sotto... qualcosa che non e mai morto.", 3);
+    testo("E sotto... qualcosa che non è mai morto.", 3);
     testo("Sotto le strade vive una citta che nessuno deve vedere.", 4);
     testo("Un tempio romano sepolto, dimenticato dal tempo.", 3);
     testo("Una cerchia di nobili eruditi lo ha riportato alla luce.", 3);
@@ -217,23 +217,21 @@ void storiainizio() {
     testo("Hanno trovato qualcosa di diverso.", 3);
     testo("Non era sapere.", 2);
     testo("Era fame.", 3);
-    testo(" si risveglia.", 3);
-    testo("Senza eta.", 2);
+    testo("Lui si risveglia.", 3);
+    testo("Senza età.", 2);
     testo("Senza pace.", 2);
     testo("Senza morte.", 3);
-    testo("Ater Mortis un comandante romano sopravvissuto alle Idi di marzo.", 4);
+    testo("Ater Mortis, un comandante romano sopravvissuto alle Idi di marzo.", 4);
     testo("Legato a un frammento divino.", 3);
     testo("La Scintilla di Quirino.", 3);
     testo("Un potere antico.", 2);
     testo("Una coscienza spezzata.", 2);
-    testo("Un ciclo che non si e mai fermato.", 3);
-    testo("Ora e prigioniero.", 2);
+    testo("Un ciclo che non si è mai fermato.", 3);
+    testo("Ora è prigioniero.", 2);
     testo("Nell'Arena delle Ombre.", 3);
     testo("E ogni combattimento...", 2);
     testo("lo sta riportando indietro.", 3);
-    cout << "\nPremi INVIO per continuare...";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cin.get();
+    system("pause");
     system("cls");
 }
 
@@ -640,7 +638,7 @@ void gioca() {
 
 void menuiniziale() {
     int scelta;
-
+    while (true) {
     cout << p.blu << "_________          _______  " << p.red << "  _        _______  _______ _________ " << p.green
          << "  _______          _________ _        _______ " << endl;
     cout << p.blu << "\\__   __/|\\     /|(  ____ \\ " << p.red << " ( \\      (  ___  )(  ____ \\\\__   __/" << p.green
@@ -674,17 +672,21 @@ void menuiniziale() {
     switch (scelta) {
         case 1:
             gioca();
+            system("pause");
             break;
         case 2:
+            system("pause");
             break;
         case 3:
             crediti();
+            system("pause");
             break;
         case 4:
             exit(0);
         default:
             break;
     }
+}
 }
 
 int main() {
